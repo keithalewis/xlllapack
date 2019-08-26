@@ -8,7 +8,7 @@ static AddInX xai_diag(
 	.Arg(XLL_FPX, _T("Vector"), _T("is a vector. "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Return a matrix having Vector for the diagonal."))
-	.Documentation()
+	.Documentation(L"Diagonal matrix.")
 );
 xfp* WINAPI
 xll_diag(const xfp* pd)
