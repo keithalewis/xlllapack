@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "xll12/xll/xll.h"
 
 #define _T(s) L##s
@@ -166,6 +167,38 @@ _FP12* WINAPI xll_array_slice(const _FP12* pa, WORD i, WORD di, WORD n)
     }
 
     return result.get();
+}
+
+AddIn xai_array_sort(
+    Function(XLL_FP, L"?xll_array_sort", L"ARRAY.SORT")
+    .Array(L"array", L"is the array to be sorted.")
+    .Long(L"n", L"is the number of elements to sort.")
+    .Category(CATEGORY)
+    .FunctionHelp(L"Sort an array of numbers.")
+    .Documentation(LR"(
+Sort an array in numeric order. If n is zero then all elements are sorted from high to low. 
+If n is -1 all elements are sorted from low to high. Other values of n perform a partial sort
+in decending order if n is positive and increasing order if n is negative.
+)")
+);
+_FP12* WINAPI xll_array_sort(_FP12* pa, LONG n)
+{
+#pragma XLLEXPORT
+
+    if (n == 0) {
+        std::sort(begin(*pa), end(*pa));
+    }
+    else if (n == -1) {
+        std::sort(begin(*pa), end(*pa), std::less<double>{});
+    }
+    else if (n > 0) {
+        std::partial_sort(begin(*pa), pa->array + n, end(*pa));
+    }
+    else {
+        std::partial_sort(begin(*pa), pa->array - n, end(*pa), std::less<double>{});
+    }
+
+    return pa;
 }
 
 
