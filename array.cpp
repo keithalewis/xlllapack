@@ -53,11 +53,20 @@ LPOPER WINAPI xll_array_apply(const LPOPER pf, const LPOPER px, const LPOPER py)
     static OPER result;
 
     try {
-        result.resize(px->size(), py->size());
+        if (py->isMissing()) {
+            result.resize(px->size(), 1);
 
-        for (WORD i = 0; i < px->size(); ++i) {
-            for (WORD j = 0; j < py->size(); ++j) {
-                result(i, j) = Excel(xlUDF, *pf, (*px)[i], (*py)[j]);
+            for (WORD i = 0; i < px->size(); ++i) {
+                result[i] = Excel(xlUDF, *pf, (*px)[i]);
+            }
+        }
+        else {
+            result.resize(px->size(), py->size());
+
+            for (WORD i = 0; i < px->size(); ++i) {
+                for (WORD j = 0; j < py->size(); ++j) {
+                    result(i, j) = Excel(xlUDF, *pf, (*px)[i], (*py)[j]);
+                }
             }
         }
     }
