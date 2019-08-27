@@ -4,9 +4,9 @@
 using namespace xll;
 
 static AddInX xai_gesv(
-	FunctionX(XLL_FPX, _T("?xll_gesv"), _T("GESV"))
-	.Arg(XLL_FPX, _T("A"), _T("is a square matrix."))
-	.Arg(XLL_FPX, _T("B"), _T("is a matrix having the same number of rows as A. "))
+	FunctionX(XLL_FP, _T("?xll_gesv"), _T("GESV"))
+	.Arg(XLL_FP, _T("A"), _T("is a square matrix."))
+	.Arg(XLL_FP, _T("B"), _T("is a matrix having the same number of rows as A. "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Call DGESV to solve AX = B for X."))
 	.Documentation(

@@ -11,10 +11,10 @@ using namespace xll;
 using std::vector;
 
 static AddInX xai_syev(
-	FunctionX(XLL_FPX, _T("?xll_syev"), _T("SYEV"))
-	.Arg(XLL_FPX, _T("Matrix"), _T("is a symmetric matrix. Only the upper triangular values are used in the calculation"))
-	.Arg(XLL_BOOLX, _T("_Eigenvectors"), _T("is an optional boolean indicating whether eigenvectors are to be computed"))
-	.Arg(XLL_BOOLX, _T("_Lower"), _T("is an optional boolean indicating whether lower triangular values are to be used "))
+	FunctionX(XLL_FP, _T("?xll_syev"), _T("SYEV"))
+	.Arg(XLL_FP, _T("Matrix"), _T("is a symmetric matrix. Only the upper triangular values are used in the calculation"))
+	.Arg(XLL_BOOL, _T("_Eigenvectors"), _T("is an optional boolean indicating whether eigenvectors are to be computed"))
+	.Arg(XLL_BOOL, _T("_Lower"), _T("is an optional boolean indicating whether lower triangular values are to be used "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Computes the eigenvalues and optionally the eigenvectors of a symmetric (Hermitian) matrix."))
 	.Documentation(

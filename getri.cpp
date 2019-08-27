@@ -5,8 +5,8 @@
 using namespace xll;
 
 static AddInX xai_getri(
-	FunctionX(XLL_FPX, _T("?xll_getri"), _T("GETRI"))
-	.Arg(XLL_FPX, _T("Matrix"), _T("is the matrix to be inverted. "))
+	FunctionX(XLL_FP, _T("?xll_getri"), _T("GETRI"))
+	.Arg(XLL_FP, _T("Matrix"), _T("is the matrix to be inverted. "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Call DGETRI to invert a square matrix."))
 	.Documentation(

@@ -3,30 +3,26 @@
 
 using namespace xll;
 
+/*
+This function returns a discretization of the linear operator
+Tf(x) = &#8747; < subscript>0 < / subscript > < superscript>1 < / superscript > exp(-| x - y | ) f(y) dy
+defined on L < superscript>2 < / superscript > [0, 1].
+The kernel is evaluated at points i / n for 0 & #8804; i& #8804; n.
+*/
+
 AddIn xai_dek(
-    Function(XLL_FP, L"?xll_dek", L"DEK")
-    .Arg(XLL_WORD, L"n", L"is the reciprocal step size.")
+    Function(XLL_DOUBLE, L"?xll_dek", L"DEK")
+    .Arg(XLL_DOUBLE, L"x", L"is first argument.")
+    .Arg(XLL_DOUBLE, L"y", L"is the second argument.")
     .Category(L"LAPACK")
-    .FunctionHelp(L"Return discretized double exponential kernel.")
+    .FunctionHelp(L"Return the double exponential kernel.")
     .Documentation(LR"(
-    This function returns a discretization of the linear operator 
-    Tf(x) = &#8747;<subscript>0</subscript><superscript>1</superscript> exp(-|x - y|) f(y) dy 
-    defined on L<superscript>2</superscript>[0,1].
-    The kernel is evaluated at points i/n for 0 &#8804; i &#8804; n. 
+The double exponential kernel is k(x,y) = exp(-|x - y|)."
     )")
 );
-_FP12* WINAPI xll_dek(WORD n)
+double WINAPI xll_dek(double x, double y)
 {
 #pragma XLLEXPORT
-    static xll::FP12 k;
-
-    k.resize(n + 1, n + 1);
-    for (WORD i = 0; i <= n; ++i) {
-        for (WORD j = i; j <= n; ++j) {
-            k(j,i) = k(i, j) = exp(-fabs(i - j) / n);
-        }
-    }
-
-    return k.get();
+    return exp(-fabs(x - y));
 }
 

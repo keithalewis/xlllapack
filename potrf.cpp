@@ -9,9 +9,9 @@
 using namespace xll;
 
 static AddInX xai_potrf(
-	FunctionX(XLL_FPX, _T("?xll_potrf"), _T("POTRF"))
-	.Arg(XLL_FPX, _T("Matrix"), _T("is the symmetric positive-definite matrix to be factored into C'C."))
-	.Arg(XLL_BOOLX, _T("_Nofill"), _T("is an optional boolean value indicating lower half need not be filled with 0. "))
+	FunctionX(XLL_FP, _T("?xll_potrf"), _T("POTRF"))
+	.Arg(XLL_FP, _T("Matrix"), _T("is the symmetric positive-definite matrix to be factored into C'C."))
+	.Arg(XLL_BOOL, _T("_Nofill"), _T("is an optional boolean value indicating lower half need not be filled with 0. "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Computes the upper Cholesky factorization of a symmetric (Hermitian) positive-definite matrix."))
 	.Documentation(

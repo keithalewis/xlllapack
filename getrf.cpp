@@ -5,8 +5,8 @@
 using namespace xll;
 
 static AddInX xai_getrf(
-	FunctionX(XLL_FPX, _T("?xll_getrf"), _T("GETRF"))
-	.Arg(XLL_FPX, _T("Matrix"), _T("is a matrix. "))
+	FunctionX(XLL_FP, _T("?xll_getrf"), _T("GETRF"))
+	.Arg(XLL_FP, _T("Matrix"), _T("is a matrix. "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Compute the LU decompostion of Matrix. "))
 	.Documentation(

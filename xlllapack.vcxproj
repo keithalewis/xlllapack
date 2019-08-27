@@ -22,6 +22,7 @@
     <ClInclude Include="xlllapack.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="array.cpp" />
     <ClCompile Include="dek.cpp" />
     <ClCompile Include="diag.cpp" />
     <ClCompile Include="gesv.cpp">
@@ -70,7 +71,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9F5763FA-C4B0-4464-84F7-B368DBE0E0A7}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

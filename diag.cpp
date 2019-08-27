@@ -4,8 +4,8 @@
 using namespace xll;
 
 static AddInX xai_diag(
-	FunctionX(XLL_FPX, _T("?xll_diag"), _T("DIAG"))
-	.Arg(XLL_FPX, _T("Vector"), _T("is a vector. "))
+	FunctionX(XLL_FP, _T("?xll_diag"), _T("DIAG"))
+	.Arg(XLL_FP, _T("Vector"), _T("is a vector. "))
 	.Category(CATEGORY)
 	.FunctionHelp(_T("Return a matrix having Vector for the diagonal."))
 	.Documentation(L"Diagonal matrix.")
