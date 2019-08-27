@@ -17,3 +17,4 @@ static AddInX xai_lapack(
 );
 #endif
 
+Auto<Open> xao([]() { _crtBreakAlloc = 3815; return 0; });

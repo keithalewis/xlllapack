@@ -40,11 +40,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="xlllapack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
   </ItemGroup>
 </Project>
