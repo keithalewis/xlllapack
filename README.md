@@ -17,7 +17,7 @@ to install the option to integrate with Visual Studio 2019.
 
 Clone (or fork and clone) [xlllapack](https://github.com/keithalewis/xlllapack),
 set the build configuration to `Debug` and either `Win32` or `x64` depending
-on whether you installed 32 or 64-bit Excel. Pressing `F5` should build the
+on whether you have 32 or 64-bit Excel. Pressing `F5` should build the
 add-in and start Excel with the add-in loaded. Use Ctrl-O to browse for example
 spreadsheets.
 
