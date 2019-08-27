@@ -16,7 +16,7 @@ static AddInX xai_potrf(
 	.FunctionHelp(_T("Computes the upper Cholesky factorization of a symmetric (Hermitian) positive-definite matrix."))
 	.Documentation(
 		_T("This calls the LAPACK function <codeInline>DPOTRF</codeInline>. ")
-		_T("LAPACK uses the lower triangular region of the matrix for stratch. ")
+		_T("LAPACK uses the lower triangular region of the matrix for scratch. ")
 		_T("By default this function overwrites that with zeros. ")
 	)
 );

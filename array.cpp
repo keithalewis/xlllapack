@@ -27,15 +27,20 @@ static AddInX xai_array_get(
     FunctionX(XLL_FP, _T("?xll_array_get"), _T("ARRAY.GET"))
     .Arg(XLL_HANDLE, _T("Handle"), _T("is handle to an arry returned by ARRAY.SET. "))
     .Category(CATEGORY)
-    .FunctionHelp(_T("Return a handle to an array."))
-    .Documentation(_T(""))
+    .FunctionHelp(_T("Return an array from a handle."))
+    .Documentation(_T("Return an array from a handle."))
 );
 _FP12* WINAPI xll_array_get(HANDLEX h)
 {
 #pragma XLLEXPORT
-    handle<xll::FP12> ha(h);
+    try {
+        return handle<xll::FP12>(h)->get();
+    }
+    catch (const std::exception& ex) {
+        XLL_ERROR(ex.what());
+    }
 
-    return ha->get();
+    return 0;
 }
 
 static AddIn xai_array_apply(
@@ -45,7 +50,10 @@ static AddIn xai_array_apply(
     .Arg(XLL_LPOPER, L"y", L"is an array of values for the second argument.")
     .Category(CATEGORY)
     .FunctionHelp(L"Return a matrix of values.")
-    .Documentation(L"Apply f to the elements of the cartesion product of x and y.")
+    .Documentation(
+        L"Return a two-dimensional array of f(x,y). "
+        L"If y is missing then return a one-dimensional array of f(x). "
+    )
 );
 LPOPER WINAPI xll_array_apply(const LPOPER pf, const LPOPER px, const LPOPER py)
 {
@@ -83,10 +91,14 @@ AddIn xai_array_interval(
     Function(XLL_FP, L"?xll_array_interval", L"ARRAY.INTERVAL")
     .Number(L"start", L"is the first value of the array.")
     .Number(L"stop", L"is the last value of the array.")
-    .Number(L"step", L"is the step size (<1) or count (>1).")
+    .Number(L"step", L"is the step size or count.")
     .Category(L"ARRAY")
     .FunctionHelp(L"Return an interval from start to stop (inclusive).")
-    .Documentation(L"doc")
+    .Documentation(
+        L"If step is less than 1, use that as the increment. "
+        L"If step is greater than 1, use that as the count for an "
+        L"array of equally spaced elements. "
+    )
 );
 _FP12* WINAPI xll_array_interval(double b, double e, double n)
 {
@@ -127,7 +139,7 @@ AddIn xai_array_slice(
     .Word(L"count", L"is the number of elements to take.")
     .Category(L"ARRAY")
     .FunctionHelp(L"Return a slice of an array.")
-    .Documentation(L"If count is zero then all elements are taken.")
+    .Documentation(L"If count is zero then all available elements are taken.")
 );
 _FP12* WINAPI xll_array_slice(const _FP12* pa, WORD i, WORD di, WORD n)
 {
@@ -172,7 +184,7 @@ static AddInX xai_array_random(
     .Arg(XLL_DOUBLE, _T("_Max"), _T("is the optional upper bound of the random numbers generated. Default is 1. "))
     .Category(CATEGORY)
     .FunctionHelp(_T("Return a Rows x Columns array of uniformly distributed random numbers between Min and Max."))
-    .Documentation(_T(""))
+    .Documentation(_T("Uses std::default_random_engine and std::uniform_real_distribution."))
 );  
 _FP12* xll_array_random(WORD r, WORD c, double min, double max)
 {
