@@ -22,4 +22,4 @@ spreadsheets.
 You will have a much more pleasant experience if you install Excel 2019.
 This version returns the entire output of array functions.  
 
-Documentation for the add-in can be found [here](https://keithalewis.github.io/xlllapack/html/).
+Documentation for the add-in can be found [here](https://keithalewis.github.io/xlllapack/).
