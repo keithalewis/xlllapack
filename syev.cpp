@@ -59,3 +59,4 @@ xll_syev(xfp* pa, BOOL vn, BOOL ul)
 
 	return w.get();
 }
+//Auto<Open> xao([]() { _crtBreakAlloc = 4020; return 0; });
