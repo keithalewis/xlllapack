@@ -122,14 +122,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetExt>.xll</TargetExt>
-    <LinkIncremental>false</LinkIncremental>
     <TargetName>$(ProjectName)</TargetName>
     <IncludePath>$(MKLIncludeDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(MKLLibDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetExt>.xll</TargetExt>
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <TargetName>$(ProjectName)</TargetName>
     <IncludePath>$(MKLIncludeDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(MKLLibDir);$(LibraryPath)</LibraryPath>
@@ -199,7 +198,7 @@
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

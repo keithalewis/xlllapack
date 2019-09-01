@@ -12,7 +12,7 @@ static AddInX xai_lapack(
 		_T("eigenvalue problems, and singular value decomposition. ")
 		_T("It also includes routines to implement the associated matrix factorizations such as ")
 		_T("LU, QR, Cholesky and Schur decomposition. ")
-		_T("LAPACK was originally written in FORTRAN 77 and is now written in Fortran 90. ")
+		_T("LAPACK was originally written in FORTRAN 77 and is now written in Fortran 95. ")
 	)
 );
 #endif

@@ -42,7 +42,8 @@ xll_syev(xfp* pa, BOOL vn, BOOL ul)
 		lwork = -1;
 		info = LAPACKE_dsyev_work(LAPACK_ROW_MAJOR, jobz, uplo, la, pa->array, la, &w[0], &size, lwork);
 		lwork = static_cast<int>(size);
-		vector<double> work(lwork);
+        static vector<double> work;
+        work.resize(lwork);
 
         LAPACKE_dsyev(LAPACK_ROW_MAJOR, jobz, uplo, la, pa->array, la, &w[0]);
 		if (vn) {

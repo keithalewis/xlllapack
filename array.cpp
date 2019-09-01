@@ -14,7 +14,7 @@ static AddInX xai_array_set(
     .Uncalced()
     .Category(CATEGORY)
     .FunctionHelp(_T("Return a handle to an array."))
-    .Documentation(_T("The array is stored in memory."))
+    .Documentation(_T("The array is stored in memory and can be retrieved using ARRAY.GET."))
 );
 HANDLEX WINAPI xll_array_set(const _FP12* pa)
 {
@@ -29,7 +29,7 @@ static AddInX xai_array_get(
     .Arg(XLL_HANDLE, _T("Handle"), _T("is handle to an arry returned by ARRAY.SET. "))
     .Category(CATEGORY)
     .FunctionHelp(_T("Return an array from a handle."))
-    .Documentation(_T("Return an array from a handle."))
+    .Documentation(_T("Retrieve an array created by ARRAY.SET."))
 );
 _FP12* WINAPI xll_array_get(HANDLEX h)
 {
@@ -97,8 +97,7 @@ AddIn xai_array_interval(
     .FunctionHelp(L"Return an interval from start to stop (inclusive).")
     .Documentation(
         L"If step is less than 1, use that as the increment. "
-        L"If step is greater than 1, use that as the count for an "
-        L"array of equally spaced elements. "
+        L"If step is greater than 1, use that as the count for an array of equally spaced elements. "
     )
 );
 _FP12* WINAPI xll_array_interval(double b, double e, double n)
@@ -140,7 +139,10 @@ AddIn xai_array_slice(
     .Word(L"count", L"is the number of elements to take.")
     .Category(L"ARRAY")
     .FunctionHelp(L"Return a slice of an array.")
-    .Documentation(L"If count is zero then all available elements are taken.")
+    .Documentation(
+        L"Return array elements at start, start + stride, ..., start + (count-1)*stride. "
+        L"If count is zero then all available elements are taken. "
+    )
 );
 _FP12* WINAPI xll_array_slice(const _FP12* pa, WORD i, WORD di, WORD n)
 {
@@ -201,6 +203,44 @@ _FP12* WINAPI xll_array_sort(_FP12* pa, LONG n)
     return pa;
 }
 
+AddIn xai_array_grade(
+    Function(XLL_FP, L"?xll_array_grade", L"ARRAY.GRADE")
+    .Array(L"array", L"is the array to be graded.")
+    .Long(L"n", L"is the number of elements to grade.")
+    .Category(CATEGORY)
+    .FunctionHelp(L"Grade an array of numbers.")
+    .Documentation(LR"(
+Grade an array in numeric order. If n is zero then all elements are graded from high to low. 
+If n is -1 all elements are graded from low to high. Other values of n perform a partial grade
+in decending order if n is positive and increasing order if n is negative.
+The result of INDEX(a, 1 + ARRAY.GRADE(a,n)) is identical to ARRAY.SORT(a,n). 
+)")
+);
+#pragma warning(push)
+#pragma warning(disable: 4244)
+_FP12* WINAPI xll_array_grade(const _FP12* pa, LONG n)
+{
+#pragma XLLEXPORT
+    static xll::FP12 iota;
+    
+    iota.resize(size(*pa));
+
+    for (int i = 0; i < iota.size(); ++i)
+        iota[i] = i;
+
+    const double* a = pa->array;
+    const auto& p = [n, a](int i, int j) { return n >= 0 ? a[i] < a[j] : a[i] > a[j]; };
+
+    if (n == 0 || n == -1) {
+        std::sort(iota.begin(), iota.end(), p);
+    }
+    else {
+        std::partial_sort(iota.begin(), iota.begin() + abs(n), iota.end(), p);
+    }
+
+    return iota.get();
+}
+#pragma warning(pop)
 
 #include <random>
 
