@@ -22,6 +22,5 @@ add-in and start Excel with the add-in loaded. Use Ctrl-O to browse for example
 spreadsheets.
 
 You will have a much more pleasant experience if you enroll in the Office Insider Program.
-This version returns the entire output of array functions.
 
 Full documentation for the add-in can be found [here](https://keithalewis.github.io/xlllapack/).
