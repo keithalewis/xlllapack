@@ -50,18 +50,24 @@ AddIn xai_bind(
     .Arg(XLL_LPOPER, L"x1", L"is an argument or missing.")
     .Arg(XLL_LPOPER, L"x2", L"is an argument or missing.")
     .Arg(XLL_LPOPER, L"x3", L"is an argument or missing.")
+    .Arg(XLL_LPOPER, L"x4", L"is an argument or missing.")
+    .Arg(XLL_LPOPER, L"x5", L"is an argument or missing.")
+    .Arg(XLL_LPOPER, L"x6", L"is an argument or missing.")
+    .Arg(XLL_LPOPER, L"x7", L"is an argument or missing.")
+    .Arg(XLL_LPOPER, L"x8", L"is an argument or missing.")
+    .Arg(XLL_LPOPER, L"x9", L"is an argument or missing.")
     .Uncalced()
     .Category(L"XLL")
     .FunctionHelp(L"Bind arguments to a function.")
 );
-HANDLEX WINAPI xll_bind(LPXLOPER12 pf, LPXLOPER12, LPXLOPER12, LPXLOPER12)
+HANDLEX WINAPI xll_bind(LPXLOPER12 pf, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12)
 {
 #pragma XLLEXPORT
     handlex result;
 
     try {
-        OPER key = AddIn::RegIdMap()[pf->val.num];
-        Args args = AddIn::AddInMap()[key];
+        OPER key = AddIn::RegIdKeyMap[pf->val.num];
+        Args args = AddIn::KeyArgsMap[key];
         WORD n = (WORD)args.Arity();
         handle<bind> h(new bind(n + 1, &pf));
         result = h.get();
@@ -75,14 +81,20 @@ HANDLEX WINAPI xll_bind(LPXLOPER12 pf, LPXLOPER12, LPXLOPER12, LPXLOPER12)
 
 AddIn xai_call(
     Function(XLL_LPOPER, L"?xll_call", L"UNCURRY")
-    .Arg(XLL_HANDLE, L"h", L"is a handle to a result of BIND.")
+    .Arg(XLL_HANDLE, L"h", L"is a handle to a result of CURRY.")
     .Arg(XLL_LPOPER, L"x1", L"is an argument.")
     .Arg(XLL_LPOPER, L"x2", L"is an argument.")
     .Arg(XLL_LPOPER, L"x3", L"is an argument.")
+    .Arg(XLL_LPOPER, L"x4", L"is an argument.")
+    .Arg(XLL_LPOPER, L"x5", L"is an argument.")
+    .Arg(XLL_LPOPER, L"x6", L"is an argument.")
+    .Arg(XLL_LPOPER, L"x7", L"is an argument.")
+    .Arg(XLL_LPOPER, L"x8", L"is an argument.")
+    .Arg(XLL_LPOPER, L"x9", L"is an argument.")
     .Category(L"XLL")
-    .FunctionHelp(L"Call a bound function with arguments.")
+    .FunctionHelp(L"Call a partially bound function supplying missing arguments.")
 );
-LPOPER WINAPI xll_call(HANDLEX h, LPXLOPER12 px, LPXLOPER12, LPXLOPER12)
+LPOPER WINAPI xll_call(HANDLEX h, LPXLOPER12 px, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12, LPXLOPER12)
 {
 #pragma XLLEXPORT
     static OPER12 result;
