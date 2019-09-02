@@ -229,7 +229,9 @@ _FP12* WINAPI xll_array_grade(const _FP12* pa, LONG n)
         iota[i] = i;
 
     const double* a = pa->array;
-    const auto& p = [n, a](int i, int j) { return n >= 0 ? a[i] < a[j] : a[i] > a[j]; };
+    const auto& p = [n, a](int i, int j) { 
+        return n >= 0 ? a[i] < a[j] : a[i] > a[j]; 
+    };
 
     if (n == 0 || n == -1) {
         std::sort(iota.begin(), iota.end(), p);

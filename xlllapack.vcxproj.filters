@@ -38,6 +38,9 @@
     <ClCompile Include="array.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="functional.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="xlllapack.h">
