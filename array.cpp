@@ -26,7 +26,7 @@ HANDLEX WINAPI xll_array_set(const _FP12* pa)
 
 static AddInX xai_array_get(
     FunctionX(XLL_FP, _T("?xll_array_get"), _T("ARRAY.GET"))
-    .Arg(XLL_HANDLE, _T("Handle"), _T("is handle to an arry returned by ARRAY.SET. "))
+    .Arg(XLL_HANDLE, _T("Handle"), _T("is handle to an array returned by ARRAY.SET. "))
     .Category(CATEGORY)
     .FunctionHelp(_T("Return an array from a handle."))
     .Documentation(_T("Return an array from a handle."))
