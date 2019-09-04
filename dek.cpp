@@ -17,7 +17,7 @@ AddIn xai_dek(
     .Category(L"LAPACK")
     .FunctionHelp(L"Return the double exponential kernel.")
     .Documentation(LR"(
-The double exponential kernel is k(x,y) = exp(-|x - y|)."
+The double exponential kernel is k(x,y) = exp(-|x - y|).
     )")
 );
 double WINAPI xll_dek(double x, double y)

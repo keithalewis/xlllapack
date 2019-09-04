@@ -21,7 +21,6 @@ on whether you have 32 or 64-bit Excel. Pressing `F5` should build the
 add-in and start Excel with the add-in loaded. Use Ctrl-O to browse for example
 spreadsheets.
 
-You will have a much more pleasant experience if you install Excel 2019.
-This version returns the entire output of array functions.  
+You will have a much more pleasant experience if you enroll in the Office Insider Program.
 
 Full documentation for the add-in can be found [here](https://keithalewis.github.io/xlllapack/).
