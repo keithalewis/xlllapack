@@ -126,6 +126,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IncludePath>$(MKLIncludeDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(MKLLibDir);$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetExt>.xll</TargetExt>
