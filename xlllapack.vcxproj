@@ -125,6 +125,7 @@
     <TargetName>$(ProjectName)</TargetName>
     <IncludePath>$(MKLIncludeDir);$(IncludePath)</IncludePath>
     <LibraryPath>$(MKLLibDir);$(LibraryPath)</LibraryPath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetExt>.xll</TargetExt>
@@ -162,6 +163,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <TreatWarningAsError>true</TreatWarningAsError>
       <SupportJustMyCode>false</SupportJustMyCode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <LinkDLL>true</LinkDLL>
@@ -216,6 +218,7 @@
       </PrecompiledHeader>
       <MinimalRebuild>false</MinimalRebuild>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <LinkDLL>true</LinkDLL>
