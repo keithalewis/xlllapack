@@ -26,7 +26,7 @@ HANDLEX WINAPI xll_array_set(const _FP12* pa)
 
 static AddInX xai_array_get(
     FunctionX(XLL_FP, _T("?xll_array_get"), _T("ARRAY.GET"))
-    .Arg(XLL_HANDLE, _T("Handle"), _T("is handle to an arry returned by ARRAY.SET. "))
+    .Arg(XLL_HANDLE, _T("Handle"), _T("is handle to an array returned by ARRAY.SET. "))
     .Category(CATEGORY)
     .FunctionHelp(_T("Return an array from a handle."))
     .Documentation(_T("Retrieve an array created by ARRAY.SET."))
@@ -229,7 +229,9 @@ _FP12* WINAPI xll_array_grade(const _FP12* pa, LONG n)
         iota[i] = i;
 
     const double* a = pa->array;
-    const auto& p = [n, a](int i, int j) { return n >= 0 ? a[i] < a[j] : a[i] > a[j]; };
+    const auto& p = [n, a](int i, int j) { 
+        return n >= 0 ? a[i] < a[j] : a[i] > a[j]; 
+    };
 
     if (n == 0 || n == -1) {
         std::sort(iota.begin(), iota.end(), p);
