@@ -21,7 +21,7 @@ xfp* WINAPI xll_getri(xfp* pa)
 {
 #pragma XLLEXPORT
 	try {
-		ensure (pa->rows == pa->columns);
+		ensure(pa->rows == pa->columns);
 
 		lapack_int n = pa->rows;
 		lapack_int info, lwork(-1);
@@ -37,12 +37,12 @@ xfp* WINAPI xll_getri(xfp* pa)
 
 		// DGETRF(&n, &n, pa->array, &n, &ipiv[0], &info);
 		info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR, n, n, pa->array, n, &ipiv[0]);
-		ensure (info == 0);
+		ensure(info == 0);
 		// DGETRI(&n, pa->array, &n, &ipiv[0], &work[0], &lwork, &info);
 		info = LAPACKE_dgetri(LAPACK_ROW_MAJOR, n, pa->array, n, &ipiv[0]);
-		ensure (info == 0);
+		ensure(info == 0);
 	}
-	catch (const std::exception& ex) {
+	catch (const std::exception & ex) {
 		XLL_ERROR(ex.what());
 
 		return 0;

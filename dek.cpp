@@ -11,18 +11,18 @@ The kernel is evaluated at points i / n for 0 & #8804; i& #8804; n.
 */
 
 AddIn xai_dek(
-    Function(XLL_DOUBLE, L"?xll_dek", L"DEK")
-    .Arg(XLL_DOUBLE, L"x", L"is first argument.")
-    .Arg(XLL_DOUBLE, L"y", L"is the second argument.")
-    .Category(L"LAPACK")
-    .FunctionHelp(L"Return the double exponential kernel.")
-    .Documentation(LR"(
+	Function(XLL_DOUBLE, L"?xll_dek", L"DEK")
+	.Arg(XLL_DOUBLE, L"x", L"is first argument.")
+	.Arg(XLL_DOUBLE, L"y", L"is the second argument.")
+	.Category(L"LAPACK")
+	.FunctionHelp(L"Return the double exponential kernel.")
+	.Documentation(LR"(
 The double exponential kernel is k(x,y) = exp(-|x - y|).
     )")
 );
 double WINAPI xll_dek(double x, double y)
 {
 #pragma XLLEXPORT
-    return exp(-fabs(x - y));
+	return exp(-fabs(x - y));
 }
 

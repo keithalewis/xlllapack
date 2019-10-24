@@ -22,7 +22,7 @@ xll_diag(const xfp* pd)
 		for (xword i = 0; i < size(*pd); ++i)
 			d(i, i) = pd->array[i];
 	}
-	catch (const std::exception& ex) {
+	catch (const std::exception & ex) {
 		XLL_ERROR(ex.what());
 
 		return 0;

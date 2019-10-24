@@ -28,31 +28,31 @@ xll_syev(xfp* pa, BOOL vn, BOOL ul)
 	static FPX w;
 
 	try {
-		ensure (pa->rows == pa->columns);
+		ensure(pa->rows == pa->columns);
 
 		char jobz = vn ? 'V' : 'N';
 		char uplo = ul ? 'U' : 'L';
 		lapack_int la = pa->rows;
-        lapack_int lwork;
-        lapack_int info;
-		w.resize(1 + (vn == TRUE)*pa->rows, pa->columns);
+		lapack_int lwork;
+		lapack_int info;
+		w.resize(1 + (vn == TRUE) * pa->rows, pa->columns);
 
 		// workspace query
 		double size;
 		lwork = -1;
 		info = LAPACKE_dsyev_work(LAPACK_ROW_MAJOR, jobz, uplo, la, pa->array, la, &w[0], &size, lwork);
 		lwork = static_cast<int>(size);
-        static vector<double> work;
-        work.resize(lwork);
+		static vector<double> work;
+		work.resize(lwork);
 
-        LAPACKE_dsyev(LAPACK_ROW_MAJOR, jobz, uplo, la, pa->array, la, &w[0]);
+		LAPACKE_dsyev(LAPACK_ROW_MAJOR, jobz, uplo, la, pa->array, la, &w[0]);
 		if (vn) {
 			std::copy(begin(*pa), end(*pa), &w[0] + la);
 		}
 
-		ensure (info == 0);
+		ensure(info == 0);
 	}
-	catch (const std::exception& ex) {
+	catch (const std::exception & ex) {
 		XLL_ERROR(ex.what());
 
 		return 0;

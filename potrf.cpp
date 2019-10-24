@@ -25,21 +25,21 @@ xll_potrf(xfp* pa, BOOL nofill)
 {
 #pragma XLLEXPORT
 	try {
-		ensure (pa->rows == pa->columns);
+		ensure(pa->rows == pa->columns);
 
 		lapack_int n = pa->rows;
 		lapack_int info;
 
 		info = LAPACKE_dpotrf(LAPACK_ROW_MAJOR, 'L', n, pa->array, n);
 
-		ensure (info == 0);
+		ensure(info == 0);
 
 		// fill in lower portion with zeros
 		if (!nofill)
 			for (xword i = 1; i < n; ++i)
-				memset(pa->array + i*n, 0, i*sizeof(double));
+				memset(pa->array + i * n, 0, i * sizeof(double));
 	}
-	catch (const std::exception& ex) {
+	catch (const std::exception & ex) {
 		XLL_ERROR(ex.what());
 
 		return 0;
@@ -57,13 +57,13 @@ test_potrf(void)
 	try {
 		OPERX o = ExcelX(xlfEvaluate, OPERX(_T("POTRF({3,2;2,3})")));
 		OPERX m = ExcelX(xlfMmult, ExcelX(xlfTranspose, o), o);
-		ensure (fabs(m(0,0) - 3) < 1e-15);
-		ensure (fabs(m(0,1) - 2) < 1e-15);
-		ensure (fabs(m(1,0) - 2) < 1e-15);
-		ensure (fabs(m(1,1) - 3) < 1e-15);
+		ensure(fabs(m(0, 0) - 3) < 1e-15);
+		ensure(fabs(m(0, 1) - 2) < 1e-15);
+		ensure(fabs(m(1, 0) - 2) < 1e-15);
+		ensure(fabs(m(1, 1) - 3) < 1e-15);
 
-	}	
-	catch (const std::exception& ex) {
+	}
+	catch (const std::exception & ex) {
 		XLL_ERROR(ex.what());
 
 		return 0;

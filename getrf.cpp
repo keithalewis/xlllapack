@@ -28,14 +28,14 @@ xfp* WINAPI xll_getrf(xfp* pa)
 	try {
 		lapack_int m = pa->rows;
 		lapack_int n = pa->columns;
-		std::vector<lapack_int> ipiv((std::min)(m,n));
+		std::vector<lapack_int> ipiv((std::min)(m, n));
 		lapack_int info;
 
 		// DGETRF(&m, &n, pa->array, &m, &ipiv[0], &info);
 		info = LAPACKE_dgetrf(LAPACK_ROW_MAJOR, m, n, pa->array, m, &ipiv[0]);
-		ensure (info == 0);
+		ensure(info == 0);
 	}
-	catch (const std::exception& ex) {
+	catch (const std::exception & ex) {
 		XLL_ERROR(ex.what());
 
 		return 0;
